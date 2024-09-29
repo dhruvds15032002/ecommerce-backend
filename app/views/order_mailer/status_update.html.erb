@@ -1,0 +1,11 @@
+<h1>Order Status Update</h1>
+
+<p>Your order ##<%= @order.id %> status has been updated to "<%= @order.status.upcase %>".</p>
+
+<ul>
+  <% @order.order_items.each do |item| %>
+    <li><strong>Product:</strong> <%= item.product.name %> | <strong>Quantity:</strong> <%= item.quantity %> | <strong>Price:</strong> <%= item.price %></li>
+  <% end %>
+</ul>
+
+<p><strong>Total Price:</strong> <%= @order.total_price %></p>

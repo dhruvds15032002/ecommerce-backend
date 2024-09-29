@@ -1,0 +1,13 @@
+<h1>Thank you for your order, <%= @user.email %>!</h1>
+
+<p>Your order has been placed successfully. Here are the details:</p>
+
+<ul>
+  <% @order.order_items.each do |item| %>
+    <li><strong>Product:</strong> <%= item.product.name %> | <strong>Quantity:</strong> <%= item.quantity %> | <strong>Price:</strong> <%= item.price %></li>
+  <% end %>
+</ul>
+
+<p><strong>Total Price:</strong> <%= @order.total_price %></p>
+
+<p>We will notify you once your order is shipped!</p>
