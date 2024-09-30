@@ -17,4 +17,13 @@ Rails.application.routes.draw do
       delete :logout
     end
   end
+
+  resources :carts, only: [] do
+    collection do
+      post 'add_to_cart'
+      get 'cart'
+      patch 'update_product_quantity'
+      delete 'remove_product_from_cart'
+    end
+  end
 end
