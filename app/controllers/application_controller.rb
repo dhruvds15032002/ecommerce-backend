@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user
 
+  rescue_from StandardError, with: :handle_internal_server_error
   private
 
   def authenticate_user
@@ -13,5 +14,12 @@ class ApplicationController < ActionController::Base
       @current_user = User.find_by(token: token)
       render json: { error: 'Unauthorized' }, status: :unauthorized unless @current_user
     end
+  end
+
+  def handle_internal_server_error(exception)
+    Rails.logger.error(exception.message)
+    Rails.logger.error(exception.backtrace.join("\n"))
+
+    render json: { error: 'Something went wrong, please try again later.' }, status: :internal_server_error
   end
 end
