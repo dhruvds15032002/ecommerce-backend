@@ -24,6 +24,13 @@ Rails.application.routes.draw do
       get 'cart'
       patch 'update_product_quantity'
       delete 'remove_product_from_cart'
+      delete 'clear_cart'
+    end
+  end
+
+  resources :orders, only: [] do
+    collection do
+      post 'checkout'
     end
   end
 end
